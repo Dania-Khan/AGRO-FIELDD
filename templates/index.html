@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+    <meta property="og:site_name" content="" /> <!-- website name -->
+    <meta property="og:site" content="" /> <!-- website link -->
+    <meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+    <meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+    <meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+    <meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+    <meta property="og:type" content="article" />
+  
+    <!-- Website Title -->
+    <title>AGRO-FIELD</title>
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.css' )}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/fontawesome-all.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/swiper.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='css/images/favicon.png') }}">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">-->
+    <style>
+        html {
+          scroll-behavior: smooth;
+        }
+        #section0{
+          height: 35px;
+        }
+        #section1 {
+          height: 700px;
+        }
+        
+        #section2 {
+          height: 1500px;
+        }
+
+        * {
+        box-sizing: border-box;
+      }
+  
+      .row {
+        margin-left:5px;
+        margin-right:5px;
+      }
+        
+      .column {
+        width: 50%;
+        padding: 5px;
+      }
+  
+      /* Clearfix (clear floats) */
+      .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+  
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+      }
+  
+      th, td {
+        text-align: left;
+        padding: 10px;
+      }
+  
+      tr:nth-child(even) {
+        background-color: #ddd;
+      }
+ 
+      
+    </style>
+  </head>
+
+  <body data-spy="scroll" data-target=".fixed-top">
+    <a href="#section0" class="back-to-top pa" style="display: inline;">Back to Top</a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top" style="background-color:#153e52; padding-bottom: 4px; padding-top: 4px ">
+      <a class="navbar-brand logo-text page-scroll" href="#"><img src="{{ url_for('static', filename='css/images/logo.jpg') }}"  alt="alternative"></a>
+      <!-- Image Logo -->
+      <a href="#"><img src="{{ url_for('static', filename='css/images/favicon.png') }}" width="60px" height="60px" alt="alternative"></a>
+
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="#section2">ID LIST</a>
+          </li>
+        </ul>
+      </div>
+    </nav> <!-- end of navbar -->
+    <!-- end of navbar -->
+
+    <div id="section0"></div>
+
+    <header id="section1">
+      <div class="header-content" >
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div><br>
+              <h2 style="text-align: center;"><br> Enter the following details to predict the Crop Yield!!<br></h2>
+                <center><form id="callMeForm" action="{{ url_for('predict')}}" method="post" data-toggle="validator" data-focus="false" action="" method="post" style="width: 50%">
+                  <br>
+
+                  <div class="form-group" >
+                    <input style="width: 100%;" type="number" placeholder="DISTRICT_ID" class="form-control-input" required="required" />
+                    <div class="help-block with-errors">
+                    </div><br>
+
+                  <div class="form-group" >
+                    <input style="width: 100%;" type="number" placeholder="CROP_ID" class="form-control-input" required="required" />
+                    <div class="help-block with-errors">
+                  </div><br>
+
+                  <div class="form-group" >
+                    <input style="width: 100%;" type="number" name="YEAR" placeholder="YEAR" class="form-control-input" required="required" />
+                    <div class="help-block with-errors"></div>
+                  </div>
+  
+                  <div class="form-group" >
+                    <input style="width: 100%;" type="number" name="TEMPERATURE-(°C)" placeholder="AVG-TEMP" class="form-control-input" required="required" />
+                    <div class="help-block with-errors"></div>
+                  </div>
+  
+                  <div class="form-group" >
+                    <input style="width: 100%;" type="number" name="RAINFALL-(MM)" placeholder="RAINFALL-(MM)" class="form-control-input" required="required" />
+                    <div class="help-block with-errors"></div>
+                  </div>
+  
+                  <div class="form-group">
+                    <input style="width: 100%;" type="number" name="AREA-(HECTARE)" placeholder="AREA-(HECTARE)" class="form-control-input" required="required" />
+                    <div class="help-block with-errors"></div>
+                  </div>
+  
+                  
+                                     
+                  <div class="form-group">
+                    <button type="submit" class="form-control-submit-button">PREDICT</button>
+                  </div>
+                </form>
+                {{ prediction_text }}
+              </div></center>
+            </div> <!-- end of col -->
+          </div> <!-- end of row -->
+        </div> <!-- end of container -->
+      </div> <!-- end of header-content -->
+
+      
+      <div id ="section2" class="row">
+        <div class="column"><br><br>
+          <table>
+            <tr>
+              <th>District</th>
+              <th>ID</th>
+            </tr>
+            <tr>
+              <td>Bagalkot</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Ballari (Bellary)</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Belagavi (Belgaum)</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Bengaluru (Bangalore) Rural</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Bengaluru (Bangalore) Urban</td>
+              <td>5</td>
+            </tr>
+             <tr>
+              <td>Bidar</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>Chamarajanagar</td>
+              <td>7</td>
+            </tr>
+            <tr>
+              <td>Chikballapur</td>
+              <td>8</td>
+            </tr>
+             <tr>
+              <td>Chikkamagaluru (Chikmagalur)</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>Chitradurga</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td>Dakshina Kannada</td>
+              <td>11</td>
+            </tr>
+             <tr>
+              <td>Davangere</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>Dharwad</td>
+              <td>13</td>
+            </tr>
+            <tr>
+              <td>Gadag</td>
+              <td>14</td>
+            </tr>
+             <tr>
+              <td>Hassan</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td>Haveri</td>
+              <td>16</td>
+            </tr>
+            <tr>
+              <td>Kalaburagi (Gulbarga)</td>
+              <td>17</td>
+            </tr>
+             <tr>
+              <td>Kodagu</td>
+              <td>18</td>
+            </tr>
+            <tr>
+              <td>Kolar</td>
+              <td>19</td>
+            </tr>
+            <tr>
+              <td>Koppal</td>
+              <td>20</td>
+            </tr>
+             <tr>
+              <td>Mandya</td>
+              <td>21</td>
+            </tr>
+            <tr>
+              <td>Mysuru (Mysore)</td>
+              <td>22</td>
+            </tr>
+            <tr>
+              <td>Raichur</td>
+              <td>23</td>
+            </tr>
+             <tr>
+              <td>Ramanagara</td>
+              <td>24</td>
+            </tr>
+            <tr>
+              <td>Shivamogga (Shimoga)</td>
+              <td>25</td>
+            </tr>
+            <tr>
+              <td>Tumakuru (Tumkur)</td>
+              <td>26</td>
+            </tr>
+             <tr>
+              <td>Udupi</td>
+              <td>27</td>
+            </tr>
+            <tr>
+              <td>Uttara Kannada (Karwar)</td>
+              <td>28</td>
+            </tr>
+            <tr>
+              <td>Vijayapura (Bijapur)</td>
+              <td>29</td>
+            </tr>
+             <tr>
+              <td>Yadgir</td>
+              <td>30</td>
+            </tr>
+          </table>
+        </div>
+    
+        <div class="column"><br><br>
+          <table>
+            <tr>
+              <th>Crop</th>
+              <th>ID</th>
+            </tr>
+            <tr>
+              <td>Wheat</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Millet(Ragi)</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Maize(Corn)</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Cotton</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Rice</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>Jowar</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>Horsegram</td>
+              <td>7</td>
+            </tr>
+            <tr>
+              <td>Sugarcane</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>Sunflower</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>Arecanut</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td>Bajra</td>
+              <td>11</td>
+            </tr>
+            <tr>
+              <td>Peas and Beans (Pulses)</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>Chilli Pepper</td>
+              <td>13</td>
+            </tr>
+            <tr>
+              <td>Potato</td>
+              <td>14</td>
+            </tr>
+            <tr>
+              <td>Onion</td>
+              <td>15</td>
+            </tr>
+          
+            </tr>          
+          </table>
+        </div>
+        </div>
+
+
+
+
+
+    <!--<br><br>
+    <div class="login">
+        <h1 id="">Begin Prediciton Now!</h1>
+        <h3 style="text-align: center;"> Enter the following values to predict the Crop Yield</h3>-->
+
+        <!-- Main Input For Receiving Query to our ML -->
+        <!--<form action="{{ url_for('predict')}}"method="post">
+          <input type="number" name="District_Id" placeholder="District_Id" required="required" />
+          <input type="number" name="Temperature" placeholder="Temperature" required="required" />
+          <input type="number" name="Rainfall" placeholder="Rainfall" required="required" />
+          <input type="number" name="Crop_Id" placeholder="Crop_Id" required="required" />
+          <input type="number" name="Area" placeholder="Area" required="required" />
+
+          <button type="submit" class="btn">Predict</button>
+        </form><br><br>
+      {{ prediction_text }}
+    </div> -->
+
+  </body>
+
+</html>
